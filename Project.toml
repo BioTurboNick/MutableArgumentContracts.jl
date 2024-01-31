@@ -1,0 +1,4 @@
+name = "MutableArgumentContracts"
+uuid = "c3ad70ce-2e7e-4283-b20d-a8aa684d31da"
+authors = ["Nicholas Bauer <nicholasbauer@outlook.com>"]
+version = "0.1.0"
