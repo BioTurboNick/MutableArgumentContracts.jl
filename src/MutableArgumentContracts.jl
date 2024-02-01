@@ -15,7 +15,7 @@ be mutated by the function via dispatching.
 Declare a mutating function that specifies that arguments `x` and `y` may be mutated:
 ```jldoctest
 julia> @! function foo!(x::!, y::!{T}, z) where T # Equivalent to foo!(x, y::T, z) where T
-    x .+= y .+ z
+    x .+= y .+= z
 end;
 
 julia> a = [1, 2, 3];
@@ -51,6 +51,8 @@ macro !(obj)
             elseif a.args[2] isa Expr && a.args[2].head === :curly
                 a.args[2].args[1] === :! || continue
                 a.args[2].args[1] = :MutableArgument
+                argtype = a.args[2].args[2]
+                a.args[2].args[2] = :(<:$argtype)
                 push!(mutableargs, a.args[1])
             end
         end
