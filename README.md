@@ -8,7 +8,7 @@ For example:
 
 ```
 @! function foo!(x::!, y::!{T}, z) where {T}
-    x .+= y .+ z
+    x .+= y .+= z
 end
 ```
 
@@ -17,7 +17,7 @@ expands to
 ```
 function foo!(x::MutableArgument, y::MutableArgument{T}, z) where {T}
     let x = x.obj, y = y.obj
-        x .+= y .+ z
+        x .+= y .+= z
     end
 end
 ```
