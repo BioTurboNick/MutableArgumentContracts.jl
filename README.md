@@ -15,7 +15,7 @@ end
 expands to
 
 ```
-function foo!(x::MutableArgument, y::MutableArgument{T}, z) where {T}
+function foo!(x::MutableArgument, y::MutableArgument{<:T}, z) where {T}
     let x = x.obj, y = y.obj
         x .+= y .+= z
     end
